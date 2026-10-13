@@ -5,7 +5,8 @@
 [![Flask](https://img.shields.io/badge/Flask-3.1-black.svg?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
 [![Scikit-Learn](https://img.shields.io/badge/scikit--learn-TF--IDF%20%2B%20MultinomialNB-orange.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen.svg)]()
+[![CI Quality Gate](https://github.com/mav322/Questflow/actions/workflows/ci.yml/badge.svg)](https://github.com/mav322/Questflow/actions/workflows/ci.yml)
+[![Release](https://img.shields.io/badge/Release-v1.0.0-brightgreen.svg)](https://github.com/mav322/Questflow/tree/v1.0.0)
 
 > **Transform chaotic codebases into verified engineering achievements.**  
 > QuestFlow audits repository structures against formal software engineering models, scores compliance deterministically (0–100%), performs AST syntax health analysis, and dispatches prerequisite-chained developer quests using topological DAG traversal.
