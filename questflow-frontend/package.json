@@ -1,0 +1,34 @@
+{
+  "name": "questflow-frontend",
+  "version": "2.1.0",
+  "description": "QuestFlow — Automated SDLC Governance, AST Code Health, and Repository Intelligence Web Cockpit",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "node server.js --test"
+  },
+  "keywords": [
+    "sdlc",
+    "governance",
+    "compliance",
+    "code-audit",
+    "repository-scanner",
+    "dag",
+    "ast-parser",
+    "webgl2-radar",
+    "telemetry",
+    "automated-testing",
+    "devops"
+  ],
+  "author": "QuestFlow Engineering // WayPoint Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mayank/questflow.git"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

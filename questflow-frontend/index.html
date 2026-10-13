@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuestFlow // SDLC Governance & Compliance Engine</title>
+  <meta name="description" content="Automated SDLC rule auditing, deterministic compliance scoring, and prerequisite-chained quest guidance for modern engineering teams. Developed by Team WayPoint.">
+  
+  <!-- Typography: Space Grotesk & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700;800;900&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- React Bits <Scanner /> WebGL Background Canvas -->
+  <div id="scanner-bg" class="scanner-bg" aria-hidden="true"></div>
+  <div class="ambient-grid" aria-hidden="true"></div>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <!-- Top Technical Status Bar -->
+  <div class="top-telemetry-bar">
+    <div class="container telemetry-inner">
+      <div class="telemetry-item">
+        <span class="status-dot"></span>
+        <span class="telemetry-label">ENGINE:</span>
+        <span class="telemetry-val" id="backend-status-pill">STANDALONE CLIENT ACTIVE</span>
+      </div>
+      <div class="telemetry-item hide-mobile">
+        <span class="telemetry-label">PROJECT:</span>
+        <span class="telemetry-val text-phosphor">QUESTFLOW // SDLC GOVERNANCE</span>
+      </div>
+      <div class="telemetry-item">
+        <span class="telemetry-label">STATUS:</span>
+        <span class="telemetry-val">AI / ML REPO AUDITOR</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#" class="brand-link">
+        <div class="brand-symbol">
+          <img src="assets/logo.png" alt="QuestFlow" class="brand-logo-img">
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">QUESTFLOW</span>
+          <span class="brand-tag">v2.1.0 // AI-SDLC</span>
+        </div>
+      </a>
+
+      <nav class="main-nav">
+        <a href="#sandbox" class="nav-link">Live Repo Scanner</a>
+        <a href="#matrix" class="nav-link">SDLC Matrix</a>
+        <a href="#pipeline" class="nav-link">Prerequisite DAG</a>
+        <a href="#artifacts-inspect" class="nav-link">AI Inspection</a>
+        <a href="#history" class="nav-link">Audit History</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#sandbox" class="btn btn-primary btn-sm">
+          <span>Audit Repo</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-eyebrow-wrapper">
+          <div class="hero-eyebrow">
+            <span class="terminal-prefix">&gt;</span>
+            <span class="text-phosphor">SDLC GOVERNANCE &amp; REPOSITORY COMPLIANCE</span>
+            <span class="cursor-blink">_</span>
+          </div>
+        </div>
+
+        <h1 class="hero-title">
+          Transform chaotic repos into <span class="gradient-text">verified engineering</span> feats.
+        </h1>
+
+        <p class="hero-lead">
+          Stop guessing project health. QuestFlow audits code repository structures against formal software engineering models, scores compliance deterministically (0–100%), and unlocks prerequisite-chained developer quests.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#sandbox" class="btn btn-primary btn-lg">
+            <span>Audit Repository Live</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#matrix" class="btn btn-secondary btn-lg">
+            <span>Explore SDLC Paradigms</span>
+          </a>
+        </div>
+
+        <!-- Telemetry Data Strip -->
+        <div class="telemetry-grid">
+          <div class="telemetry-card">
+            <div class="telemetry-digit text-phosphor">5</div>
+            <div class="telemetry-desc">
+              <span class="telemetry-title">SDLC Models</span>
+              <span class="telemetry-sub">Waterfall, Agile, V-Model, Spiral, Iterative</span>
+            </div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-digit text-amber">100%</div>
+            <div class="telemetry-desc">
+              <span class="telemetry-title">Deterministic</span>
+              <span class="telemetry-sub">Weighted rule-to-artifact mapping engine</span>
+            </div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-digit text-cyan">DAG</div>
+            <div class="telemetry-desc">
+              <span class="telemetry-title">Prerequisite Chain</span>
+              <span class="telemetry-sub">Next-task unlocked only upon prerequisite check</span>
+            </div>
+          </div>
+          <div class="telemetry-card">
+            <div class="telemetry-digit text-phosphor">0</div>
+            <div class="telemetry-desc">
+              <span class="telemetry-title">Bloat &amp; Overhead</span>
+              <span class="telemetry-sub">Pure zero-dependency compliance verification</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE INTERACTIVE QUESTFLOW CONSOLE (SANDBOX) -->
+    <section id="sandbox" class="sandbox-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">[ AI &amp; REPOSITORY AUDIT ENGINE ]</div>
+          <h2 class="section-title">Live Repository Audit &amp; ML Scoring Cockpit</h2>
+          <p class="section-subtitle">
+            Upload your local project folder or a .ZIP archive. QuestFlow analyzes code depth via Abstract Syntax Tree (AST) parsing, performs TF-IDF + Naive Bayes deliverable classification, and scores engineering maturity.
+          </p>
+        </div>
+
+        <!-- Split Terminal Cockpit -->
+        <div class="cockpit-grid">
+          
+          <!-- LEFT / CENTER: Ingestion, AST Code Health & AI Reasoning -->
+          <div class="cockpit-panel repo-panel">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                <span class="panel-title">REPOSITORY INGESTION &amp; AST ENGINE</span>
+              </div>
+              <div class="model-select-wrapper" style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+                <label for="version-selector" class="sr-only">Version</label>
+                <select id="version-selector" class="terminal-select" title="Select Project Version / Iteration Snapshot">
+                  <option value="v1.0" selected>VER: v1.0 (Baseline)</option>
+                  <option value="v1.1">VER: v1.1 (Iteration 2)</option>
+                  <option value="v2.0">VER: v2.0 (Phase Gate 2)</option>
+                  <option value="v3.0">VER: v3.0 (Release RC)</option>
+                </select>
+                <label for="model-selector" class="sr-only">Model</label>
+                <select id="model-selector" class="terminal-select">
+                  <option value="Waterfall" selected>MODEL: Waterfall (Python Web)</option>
+                  <option value="Agile">MODEL: Agile / Scrum (MERN)</option>
+                  <option value="V-Model">MODEL: V-Model (Critical Systems)</option>
+                  <option value="Spiral">MODEL: Spiral (R&amp;D Prototype)</option>
+                  <option value="Iterative">MODEL: Iterative (Java Spring)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              
+              <!-- Repo Upload Dropzone -->
+              <div id="upload-panel-zone">
+                <div class="upload-dropzone" id="upload-dropzone">
+                  <input type="file" id="folder-upload-input" webkitdirectory directory multiple style="display: none;">
+                  <input type="file" id="zip-upload-input" accept=".zip" style="display: none;">
+                  
+                  <div class="dropzone-icon-group">
+                    <div class="dropzone-icon-box">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                    </div>
+                    <div class="dropzone-icon-box">
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                  </div>
+
+                  <div class="dropzone-title">DRAG &amp; DROP REPOSITORY FOLDER OR .ZIP</div>
+                  <div class="dropzone-subtitle">
+                    Select a local project directory or zip archive to audit deliverables, inspect code authenticity, and evaluate version-over-version SDLC methodology compliance.
+                  </div>
+
+                  <div class="dropzone-btn-row">
+                    <button type="button" class="btn-upload btn-upload-folder" id="btn-browse-folder">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
+                      <span>Upload Folder</span>
+                    </button>
+                    <button type="button" class="btn-upload btn-upload-zip" id="btn-browse-zip">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                      <span>Upload .ZIP</span>
+                    </button>
+                    <button type="button" class="btn-upload btn-scaffold" id="btn-download-scaffold" title="Download baseline starter folder zip for this SDLC model">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                      <span>Scaffold (.zip)</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Scan Progress Bar -->
+                <div class="scan-progress-strip" id="scan-progress-strip">
+                  <div class="scan-progress-header">
+                    <span id="scan-progress-label">Evaluating repository...</span>
+                    <span id="scan-progress-percent">0%</span>
+                  </div>
+                  <div class="scan-progress-bar-bg">
+                    <div class="scan-progress-bar-fill" id="scan-progress-bar"></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SDLC METHODOLOGY & MULTI-VERSION LIFECYCLE ENGINE -->
+              <div class="ast-telemetry-container sdlc-governance-container" id="sdlc-governance-container">
+                <div class="ast-telemetry-header">
+                  <span class="ast-header-tag" id="sdlc-engine-name">[ SDLC METHODOLOGY &amp; VERSION LIFECYCLE ]</span>
+                  <span class="ast-header-status text-phosphor" id="sdlc-gate-badge">AWAITING AUDIT</span>
+                </div>
+                <div class="sdlc-modifier-strip" id="sdlc-modifier-strip">
+                  <span id="sdlc-modifier-text">Select an SDLC Model &amp; Version Tag to evaluate phase-gate order, V-wing symmetry, risk loops, or sprint velocity.</span>
+                </div>
+                <!-- Phase-by-Phase Progress Bars -->
+                <div class="sdlc-phases-grid" id="sdlc-phases-grid">
+                  <!-- Populated dynamically via JS -->
+                </div>
+                <!-- Multi-Version Timeline Strip -->
+                <div class="version-timeline-box" id="version-timeline-box">
+                  <div class="version-timeline-header">
+                    <span class="version-timeline-title">MULTI-VERSION LIFECYCLE TIMELINE (v1.0 → v2.0 → v3.0)</span>
+                    <span class="version-timeline-badge" id="version-count-pill">1 SNAPSHOT</span>
+                  </div>
+                  <div class="version-timeline-nodes" id="version-timeline-nodes">
+                    <div class="version-empty-note">Upload a project under v1.0, then switch to v1.1 or v2.0 (or upload a repo with v1/, v2/ subfolders) to track multi-version SDLC progression.</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AST Code Health & Structural Telemetry (Idea 2 + Idea 3) -->
+              <div class="ast-telemetry-container">
+                <div class="ast-telemetry-header">
+                  <span class="ast-header-tag">[ AST CODE HEALTH &amp; TELEMETRY ]</span>
+                  <span class="ast-header-status text-cyan" id="ast-scan-status">AWAITING SCAN</span>
+                </div>
+                <div class="ast-metrics-grid">
+                  <div class="ast-stat-card">
+                    <span class="ast-stat-label">LINES OF CODE</span>
+                    <span class="ast-stat-num text-phosphor" id="ast-stat-loc">--</span>
+                    <span class="ast-stat-sub">Executable LOC</span>
+                  </div>
+                  <div class="ast-stat-card">
+                    <span class="ast-stat-label">FUNCTIONS / METHODS</span>
+                    <span class="ast-stat-num text-cyan" id="ast-stat-funcs">--</span>
+                    <span class="ast-stat-sub">Parsed syntax blocks</span>
+                  </div>
+                  <div class="ast-stat-card">
+                    <span class="ast-stat-label">TEST ASSERTIONS</span>
+                    <span class="ast-stat-num text-phosphor" id="ast-stat-assertions">--</span>
+                    <span class="ast-stat-sub">Unit verification gates</span>
+                  </div>
+                  <div class="ast-stat-card">
+                    <span class="ast-stat-label">CLASS ABSTRACTIONS</span>
+                    <span class="ast-stat-num text-amber" id="ast-stat-classes">--</span>
+                    <span class="ast-stat-sub">OOP structural units</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Strategic Insights & Architectural Reasoning -->
+              <div class="ai-insights-box" id="ai-insights-box">
+                <div class="ai-insights-header">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                  <span>AI STRATEGIC INSIGHTS &amp; REASONING</span>
+                </div>
+                <div id="ai-insights-list">
+                  <div class="ai-empty-prompt">
+                    <span class="terminal-prefix">&gt;</span> No repository uploaded yet. Drop a project directory or ZIP archive above to run AST code parsing, ML deliverable classification, and receive tailored architectural advice.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Missing Deliverables List -->
+              <div class="missing-items-card">
+                <div class="missing-header">
+                  <span>DEFICIENT ARTIFACTS / AUDIT GAPS</span>
+                  <span class="missing-count" id="missing-count-badge">0 GAPS</span>
+                </div>
+                <div class="missing-items-list" id="missing-items-list">
+                  <div class="missing-row">
+                    <span style="color: var(--text-muted);">Upload a project directory to detect missing deliverables.</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT: Audit Scorecard, Dual Metrics & Compact Deliverables Checklist -->
+          <div class="cockpit-panel engine-panel">
+            <div class="panel-header">
+              <div class="panel-title-group">
+                <span class="radar-dot"></span>
+                <span class="panel-title">AUDIT SCORECARD &amp; TELEMETRY</span>
+              </div>
+              <div class="panel-timestamp" id="live-clock">16:45:00 UTC</div>
+            </div>
+
+            <div class="panel-body engine-body">
+
+              <!-- ML Model Benchmark Strip -->
+              <div class="ml-benchmark-strip">
+                <span class="ml-chip">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                  <span>ML CLASSIFIER: TF-IDF + NAIVE BAYES</span>
+                </span>
+                <span class="ml-metrics-val" id="ml-metrics-pill">ACCURACY: 92.3% | F1: 91.8%</span>
+              </div>
+              
+              <!-- Radial Gauge & Score Readout -->
+              <div class="score-display-card">
+                <div class="gauge-wrapper">
+                  <svg class="score-gauge" width="160" height="160" viewBox="0 0 160 160">
+                    <circle class="gauge-bg" cx="80" cy="80" r="70"></circle>
+                    <circle class="gauge-progress" id="score-circle" cx="80" cy="80" r="70" style="stroke-dashoffset: 440;"></circle>
+                  </svg>
+                  <div class="gauge-center-content">
+                    <div class="score-number" id="score-counter">--</div>
+                    <div class="score-unit">/ 100 PTS</div>
+                  </div>
+                </div>
+
+                <div class="score-meta">
+                  <div class="compliance-badge" id="compliance-badge">AWAITING INGESTION</div>
+                  <div class="score-subtext" id="score-subtext">Upload a project folder or ZIP archive to evaluate compliance and code authenticity.</div>
+                  
+                  <div class="meta-breakdown-row">
+                    <div class="meta-cell">
+                      <span class="meta-cell-label">PHASES ACTIVE</span>
+                      <span class="meta-cell-value" id="phases-active-count">-- / 5</span>
+                    </div>
+                    <div class="meta-cell">
+                      <span class="meta-cell-label">ARTIFACTS PRESENT</span>
+                      <span class="meta-cell-value" id="artifacts-present-count">-- / 9</span>
+                    </div>
+                  </div>
+
+                  <!-- Dual Metrics Breakdown -->
+                  <div class="dual-metrics-row">
+                    <div class="dual-metric-card">
+                      <span class="dual-metric-label">COMPLIANCE GATE</span>
+                      <span class="dual-metric-score text-phosphor" id="metric-compliance">--</span>
+                    </div>
+                    <div class="dual-metric-card">
+                      <span class="dual-metric-label">AI AUTHENTICITY</span>
+                      <span class="dual-metric-score text-cyan" id="metric-authenticity">--</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- ACTIVE QUEST CARD (Prerequisite Chained Next Task) -->
+              <div class="quest-dispatch-card">
+                <div class="quest-card-header">
+                  <span class="quest-label-pill">CURRENT ACTIVE QUEST</span>
+                  <span class="quest-step-pill" id="quest-step-pill">READY</span>
+                </div>
+                <div class="quest-card-body">
+                  <div class="quest-phase-tag" id="quest-phase-tag">SDLC Governance</div>
+                  <div class="quest-instruction" id="quest-instruction-text">
+                    Upload a repository folder or ZIP archive above to evaluate deliverables and unlock prerequisite-chained developer quests.
+                  </div>
+                </div>
+                <div class="quest-prereq-strip" id="quest-prereq-strip">
+                  <span class="prereq-label">PREREQUISITE DEPENDENCY:</span>
+                  <span class="prereq-status" id="quest-prereq-status">Repository Ingestion</span>
+                </div>
+              </div>
+
+              <!-- Compact Deliverables Checklist Card (Relocated to right sidebar) -->
+              <div class="compact-checklist-card">
+                <div class="compact-checklist-header">
+                  <div class="compact-checklist-title-wrap">
+                    <span class="compact-checklist-title">DELIVERABLES CHECKLIST</span>
+                  </div>
+                  <span class="checklist-count-pill" id="checklist-verified-count">0 / 9 VERIFIED</span>
+                </div>
+                <div class="compact-checklist-list" id="compact-checklist-container">
+                  <!-- Populated dynamically via JS -->
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Artifact Deep Inspection Table -->
+        <div class="artifact-table-card" id="artifacts-inspect">
+          <div class="table-header-bar">
+            <span>[ AI ARTIFACT DEEP INSPECTION &amp; AUTHENTICITY AUDIT ]</span>
+            <span id="inspected-files-count" class="text-phosphor">0 DELIVERABLES ANALYZED</span>
+          </div>
+          <div class="artifact-table-scroll">
+            <table class="artifact-table">
+              <thead>
+                <tr>
+                  <th>File / Deliverable Path</th>
+                  <th>ML Predicted Phase</th>
+                  <th>Confidence</th>
+                  <th>Authenticity Tier</th>
+                  <th>Quality Feedback &amp; Heuristic Markers</th>
+                </tr>
+              </thead>
+              <tbody id="artifact-table-body">
+                <tr>
+                  <td colspan="5" style="text-align: center; padding: 24px; color: var(--text-muted);">
+                    Upload a repository or run a simulation to view detailed AI artifact inspections.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MULTI-SDLC ARCHITECTURE MATRIX -->
+    <section id="matrix" class="matrix-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">[ FORMAL METHODOLOGIES ]</div>
+          <h2 class="section-title">Multi-SDLC Rule Matrix</h2>
+          <p class="section-subtitle">
+            QuestFlow is not hardcoded to a single paradigm. Different engineering contexts demand distinct phase structures, gating rules, and compliance weights.
+          </p>
+        </div>
+
+        <!-- Matrix Tabs -->
+        <div class="matrix-tabs-nav">
+          <button type="button" class="matrix-tab-btn active" data-model="waterfall">01. WATERFALL</button>
+          <button type="button" class="matrix-tab-btn" data-model="agile">02. AGILE / SCRUM</button>
+          <button type="button" class="matrix-tab-btn" data-model="vmodel">03. V-MODEL</button>
+          <button type="button" class="matrix-tab-btn" data-model="spiral">04. SPIRAL</button>
+          <button type="button" class="matrix-tab-btn" data-model="iterative">05. ITERATIVE</button>
+        </div>
+
+        <!-- Dynamic Matrix Content Card -->
+        <div class="matrix-display-card" id="matrix-card">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- THE PREREQUISITE CHAIN & PIPELINE DAG -->
+    <section id="pipeline" class="pipeline-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">[ DETERMINISTIC EXECUTION ]</div>
+          <h2 class="section-title">Linear Prerequisite Chaining (DAG)</h2>
+          <p class="section-subtitle">
+            How QuestFlow prevents premature optimization. Tasks unlock sequentially through foreign key dependencies defined in <code class="code-inline">quest_steps.prerequisite_step_id</code>.
+          </p>
+        </div>
+
+        <div class="dag-pipeline-container">
+          <div class="dag-step-node completed">
+            <div class="dag-node-header">
+              <span class="dag-node-num">01</span>
+              <span class="dag-node-status">REQUIREMENT GATE</span>
+            </div>
+            <div class="dag-node-title">SRS Specification</div>
+            <div class="dag-node-file">1_Requirements/SRS.md</div>
+            <div class="dag-node-weight">Weightage: 20 pts</div>
+            <div class="dag-connector"></div>
+          </div>
+
+          <div class="dag-step-node completed">
+            <div class="dag-node-header">
+              <span class="dag-node-num">02</span>
+              <span class="dag-node-status">REQUIREMENT GATE</span>
+            </div>
+            <div class="dag-node-title">User Stories &amp; Use Cases</div>
+            <div class="dag-node-file">1_Requirements/user_stories.md</div>
+            <div class="dag-node-weight">Weightage: 10 pts</div>
+            <div class="dag-connector"></div>
+          </div>
+
+          <div class="dag-step-node completed">
+            <div class="dag-node-header">
+              <span class="dag-node-num">03</span>
+              <span class="dag-node-status">SYSTEM ARCHITECTURE</span>
+            </div>
+            <div class="dag-node-title">System Architecture Blueprint</div>
+            <div class="dag-node-file">2_Design/architecture.png</div>
+            <div class="dag-node-weight">Weightage: 15 pts</div>
+            <div class="dag-connector"></div>
+          </div>
+
+          <div class="dag-step-node active">
+            <div class="dag-node-header">
+              <span class="dag-node-num">04</span>
+              <span class="dag-node-status">DATA MODELING</span>
+            </div>
+            <div class="dag-node-title">Database Schema Definition</div>
+            <div class="dag-node-file">2_Design/schema.sql</div>
+            <div class="dag-node-weight">Weightage: 10 pts</div>
+            <div class="dag-connector"></div>
+          </div>
+
+          <div class="dag-step-node pending">
+            <div class="dag-node-header">
+              <span class="dag-node-num">05</span>
+              <span class="dag-node-status">CORE CODING</span>
+            </div>
+            <div class="dag-node-title">Production Source Code</div>
+            <div class="dag-node-file">3_Source/</div>
+            <div class="dag-node-weight">Weightage: 15 pts</div>
+            <div class="dag-connector"></div>
+          </div>
+
+          <div class="dag-step-node pending">
+            <div class="dag-node-header">
+              <span class="dag-node-num">06</span>
+              <span class="dag-node-status">QUALITY ASSURANCE</span>
+            </div>
+            <div class="dag-node-title">Automated Unit Tests</div>
+            <div class="dag-node-file">4_Testing/unit_tests/</div>
+            <div class="dag-node-weight">Weightage: 15 pts</div>
+            <div class="dag-connector"></div>
+          </div>
+
+          <div class="dag-step-node pending">
+            <div class="dag-node-header">
+              <span class="dag-node-num">07</span>
+              <span class="dag-node-status">DEVOPS &amp; RELEASE</span>
+            </div>
+            <div class="dag-node-title">CI/CD &amp; Containerization</div>
+            <div class="dag-node-file">5_DevOps/Dockerfile</div>
+            <div class="dag-node-weight">Weightage: 10 pts</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- PERSISTENT REPOSITORY AUDIT HISTORY (SQLITE PERSISTENCE) -->
+    <section id="history" class="history-section">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-tag">[ AUDIT PERSISTENCE &amp; BENCHMARKS ]</div>
+          <h2 class="section-title">Verified Audit History &amp; SQLite Telemetry</h2>
+          <p class="section-subtitle">
+            Records of past repository evaluations preserved in <code class="code-inline">questflow.db</code>. Each entry documents deterministic compliance, AI quality scores, and timestamped delivery health.
+          </p>
+        </div>
+
+        <div class="history-card">
+          <div class="table-header-bar">
+            <span>[ REPOSITORY AUDIT LEDGER ]</span>
+            <button type="button" class="btn btn-ghost btn-sm" id="btn-refresh-history">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6"></path><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+              <span>Refresh Ledger</span>
+            </button>
+          </div>
+          <div class="artifact-table-scroll">
+            <table class="artifact-table">
+              <thead>
+                <tr>
+                  <th>Audit ID</th>
+                  <th>Repository Name</th>
+                  <th>SDLC Model</th>
+                  <th>Compliance Gate</th>
+                  <th>AI Authenticity</th>
+                  <th>Composite Score</th>
+                  <th>Timestamp</th>
+                  <th>Summary Findings</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body">
+                <tr>
+                  <td colspan="8" style="text-align: center; padding: 24px; color: var(--text-muted);">
+                    Loading audit records from database...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- GIGANTIC AESTHETIC KINETIC FOOTER (INSPIRED BY SELF-DISCIPLINE) -->
+  <footer class="mega-site-footer" id="footer">
+    
+    <!-- Background Technical Grid & Bloom Glow -->
+    <div class="footer-grid-bg" aria-hidden="true"></div>
+    <div class="footer-bloom-glow" aria-hidden="true"></div>
+
+    <div class="container footer-content-wrap">
+      
+      <!-- Top Row: Brand, Navigation & Electric Lime Newsletter Pill -->
+      <div class="footer-top-row">
+        
+        <!-- Left: Brand Wordmark -->
+        <div class="footer-col-brand">
+          <div class="footer-brand-title">
+            <img src="assets/logo.png" alt="QuestFlow Logo" class="footer-logo-img">
+            <span>QUESTFLOW<span class="trademark-symbol">®</span></span>
+          </div>
+          <div class="footer-brand-meta">
+            <span class="meta-tag">[ SDLC RULE ENGINE ]</span>
+            <span class="meta-version">v1.0.0 // PRODUCTION</span>
+          </div>
+        </div>
+
+        <!-- Middle: Minimalist Nav Index -->
+        <div class="footer-col-nav">
+          <div class="footer-nav-label">[ DIRECTORY ]</div>
+          <ul class="footer-nav-list">
+            <li><a href="#" class="footer-nav-link">[ HOME ]</a></li>
+            <li><a href="#sandbox" class="footer-nav-link">AUDIT COCKPIT</a></li>
+            <li><a href="#matrix" class="footer-nav-link">SDLC MATRIX</a></li>
+            <li><a href="#pipeline" class="footer-nav-link">PREREQUISITE DAG</a></li>
+            <li><a href="#artifacts-inspect" class="footer-nav-link">AI INSPECTION</a></li>
+            <li><a href="#history" class="footer-nav-link">AUDIT HISTORY</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- Center: GIGANTIC, PERSPECTIVE, SLANTED STATEMENT TYPOGRAPHY -->
+      <div class="footer-mega-stage" id="mega-stage">
+        <div class="mega-text-frame" id="mega-text-frame">
+          <div class="mega-statement-word" id="mega-text" data-text="QUESTFLOW">
+            <span class="mega-char" data-char="Q">Q</span>
+            <span class="mega-char" data-char="U">U</span>
+            <span class="mega-char" data-char="E">E</span>
+            <span class="mega-char" data-char="S">S</span>
+            <span class="mega-char" data-char="T">T</span>
+            <span class="mega-char" data-char="F">F</span>
+            <span class="mega-char" data-char="L">L</span>
+            <span class="mega-char" data-char="O">O</span>
+            <span class="mega-char" data-char="W">W</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Metadata & Production Credits -->
+      <div class="footer-bottom-row">
+        
+        <div class="footer-bottom-col left-col">
+          <div class="footer-copy-statement">© QUESTFLOW /</div>
+          <div class="footer-copy-sub">ALL RIGHTS RESERVED</div>
+        </div>
+
+        <div class="footer-bottom-col center-col">
+          <div class="footer-dept-name">SDLC REPOSITORY GOVERNANCE &amp; COMPLIANCE</div>
+          <div class="footer-univ-name">AST TELEMETRY &amp; ML ARTIFACT AUDITOR</div>
+          <div class="footer-state-name">PRODUCTION SUITE</div>
+        </div>
+
+        <div class="footer-bottom-col right-col">
+          <div class="footer-links-group">
+            <a href="#sandbox" class="footer-sub-link">REPO SCANNER</a>
+
+          </div>
+          <div class="footer-author-credit">
+            ARCHITECTURE BY <span class="credit-name">QUESTFLOW CORE</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </footer>
+
+  <script src="scanner.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

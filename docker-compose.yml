@@ -1,0 +1,43 @@
+# ==============================================================================
+# QuestFlow // SDLC Governance Microservice Orchestration Stack
+# ==============================================================================
+# Multi-container topology orchestrating the Python 3.12 Flask ML engine
+# and Node.js reverse proxy & asset cockpit.
+# ==============================================================================
+
+version: '3.8'
+
+networks:
+  questflow-net:
+    driver: bridge
+
+volumes:
+  questflow-db-data:
+    driver: local
+
+services:
+  questflow-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: questflow-governance-engine
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - BACKEND_HOST=127.0.0.1
+      - BACKEND_PORT=5000
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - questflow-db-data:/app/backend/data
+    networks:
+      - questflow-net
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
