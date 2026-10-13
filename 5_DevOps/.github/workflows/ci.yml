@@ -19,24 +19,21 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-          cache: 'pip'
 
       - name: Install Python Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r questflow-backend/requirements.txt
+          pip install -r requirements.txt
 
       - name: Set up Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
-          cache-dependency-path: questflow-frontend/package.json
 
-      - name: Install Frontend Dependencies
+      - name: Verify Frontend JavaScript Syntax
         run: |
-          cd questflow-frontend
-          npm install
+          node -c questflow-frontend/server.js
+          node -c questflow-frontend/script.js
 
       - name: Execute Automated Unit Test Suite
         run: |
@@ -48,7 +45,7 @@ jobs:
           import sys, os
           sys.path.insert(0, 'questflow-backend')
           from services.rule_engine import calculate_compliance
-          files = [os.path.relpath(os.path.join(r, f), '.').replace('\\\\', '/') for r, d, fs in os.walk('.') for f in fs]
+          files = [os.path.relpath(os.path.join(r, f), '.').replace('\\\\', '/') for r, d, fs in os.walk('.') if not any(p in ('node_modules', '.git', '__pycache__') for p in r.replace('\\\\', '/').split('/')) for f in fs]
           score, missing, satisfied = calculate_compliance('Waterfall', files)
           print(f'Continuous Compliance Score: {score}%')
           assert score >= 90, f'Compliance score {score}% is below required gate (90%)'
