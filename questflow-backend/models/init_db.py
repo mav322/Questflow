@@ -18,6 +18,20 @@ def get_connection():
     global _migrated
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
+
+    # Auto-initialize schema & seed models on fresh environments (CI/CD, Docker, clean checkout)
+    try:
+        tables = {row[0] for row in conn.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()}
+        if 'templates' not in tables or 'sdlc_rules' not in tables:
+            with open(SCHEMA_PATH) as f:
+                conn.executescript(f.read())
+            conn.commit()
+            cur = conn.cursor()
+            _seed_all_models_cur(cur)
+            conn.commit()
+    except Exception:
+        pass
+
     if not _migrated:
         try:
             cols = {row["name"] for row in conn.execute("PRAGMA table_info(audit_history)").fetchall()}
@@ -88,10 +102,7 @@ def seed_model(cur, sdlc_model, tech_stack, folder_structure, rules_and_quests):
     print(f"Model '{sdlc_model}' seeded with {len(rules_and_quests)} rules and sequential quests.")
 
 
-def seed_all_models():
-    conn = get_connection()
-    cur = conn.cursor()
-
+def _seed_all_models_cur(cur):
     # 1. WATERFALL (Python Web)
     waterfall_structure = {
         "1_Requirements": ["SRS.md", "user_stories.md"],
@@ -197,6 +208,11 @@ def seed_all_models():
     ]
     seed_model(cur, "Iterative", "Java Spring", iterative_structure, iterative_items)
 
+
+def seed_all_models():
+    conn = get_connection()
+    cur = conn.cursor()
+    _seed_all_models_cur(cur)
     conn.commit()
     conn.close()
     print("All 5 SDLC Models successfully seeded into QuestFlow database!")

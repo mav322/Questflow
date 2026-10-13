@@ -35,6 +35,10 @@ jobs:
           node -c questflow-frontend/server.js
           node -c questflow-frontend/script.js
 
+      - name: Initialize Database & Seed SDLC Rules
+        run: |
+          python questflow-backend/models/init_db.py
+
       - name: Execute Automated Unit Test Suite
         run: |
           python -m unittest discover -s tests -p "test_*.py"
